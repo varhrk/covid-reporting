@@ -47,7 +47,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"items": {
-						"value": "@activity('Lookup json file').output.count",
+						"value": "@activity('Lookup json file').output.value",
 						"type": "Expression"
 					},
 					"activities": [

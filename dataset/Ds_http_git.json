@@ -5,11 +5,6 @@
 			"referenceName": "LS_HttpServer_GIT",
 			"type": "LinkedServiceReference"
 		},
-		"parameters": {
-			"Para_relative_url": {
-				"type": "String"
-			}
-		},
 		"folder": {
 			"name": "http_data"
 		},
@@ -18,7 +13,7 @@
 		"typeProperties": {
 			"location": {
 				"type": "HttpServerLocation",
-				"relativeUrl": "/varhrk/covid-reporting/refs/heads/main/"
+				"relativeUrl": "/varhrk/covid-reporting/refs/heads/main/cases_deaths.csv"
 			},
 			"columnDelimiter": ",",
 			"escapeChar": "\\",

@@ -97,7 +97,7 @@
 							},
 							"inputs": [
 								{
-									"referenceName": "Ds_http_git",
+									"referenceName": "Ds_http_git_ecdc",
 									"type": "DatasetReference",
 									"parameters": {
 										"relativeurl": {

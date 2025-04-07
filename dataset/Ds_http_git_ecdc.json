@@ -1,5 +1,5 @@
 {
-	"name": "Ds_http_git",
+	"name": "Ds_http_git_ecdc",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "LS_HttpServer_GIT",

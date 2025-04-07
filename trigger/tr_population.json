@@ -13,7 +13,7 @@
 		],
 		"type": "BlobEventsTrigger",
 		"typeProperties": {
-			"blobPathBeginsWith": "/population/blobs/populatoon_by_age.tsv.gz",
+			"blobPathBeginsWith": "/population/blobs/population_by_age.tsv.gz",
 			"ignoreEmptyBlobs": true,
 			"scope": "/subscriptions/5e1ce86c-6aba-47f6-b127-f3df6d7dce0d/resourceGroups/covid-reporting-RG/providers/Microsoft.Storage/storageAccounts/covidreportingblobe",
 			"events": [

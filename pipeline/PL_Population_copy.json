@@ -204,6 +204,9 @@
 				}
 			}
 		],
+		"folder": {
+			"name": "ingest"
+		},
 		"annotations": []
 	}
 }

@@ -6,7 +6,7 @@
 			"type": "LinkedServiceReference"
 		},
 		"folder": {
-			"name": "population"
+			"name": "ingest/population"
 		},
 		"annotations": [],
 		"type": "DelimitedText",

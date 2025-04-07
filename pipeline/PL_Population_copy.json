@@ -134,7 +134,14 @@
 						{
 							"name": "Delete source file",
 							"type": "Delete",
-							"dependsOn": [],
+							"dependsOn": [
+								{
+									"activity": "Copy population",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
 							"policy": {
 								"timeout": "0.12:00:00",
 								"retry": 0,
@@ -148,7 +155,7 @@
 									"referenceName": "DS_population_source_gz",
 									"type": "DatasetReference"
 								},
-								"enableLogging": true,
+								"enableLogging": false,
 								"storeSettings": {
 									"type": "AzureBlobStorageReadSettings",
 									"recursive": true,

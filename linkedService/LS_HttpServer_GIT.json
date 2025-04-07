@@ -1,0 +1,13 @@
+{
+	"name": "LS_HttpServer_GIT",
+	"properties": {
+		"description": "git http ",
+		"annotations": [],
+		"type": "HttpServer",
+		"typeProperties": {
+			"url": "https://raw.githubusercontent.com/varhrk/covid-reporting/refs/heads/main/",
+			"enableServerCertificateValidation": true,
+			"authenticationType": "Anonymous"
+		}
+	}
+}

@@ -74,10 +74,12 @@
 		],
 		"variables": {
 			"sourcleurl": {
-				"type": "String"
+				"type": "String",
+				"defaultValue": "/varhrk/covid-reporting/refs/heads/main/cases_deaths.csv"
 			},
 			"sinkfilename": {
-				"type": "String"
+				"type": "String",
+				"defaultValue": "cases_deaths.csv"
 			}
 		},
 		"annotations": []

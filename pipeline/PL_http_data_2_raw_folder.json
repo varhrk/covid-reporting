@@ -46,6 +46,10 @@
 				],
 				"userProperties": [],
 				"typeProperties": {
+					"items": {
+						"value": "@activity('Lookup json file').output.count",
+						"type": "Expression"
+					},
 					"activities": [
 						{
 							"name": "Copy data from website to gen2",

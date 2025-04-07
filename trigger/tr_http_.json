@@ -2,7 +2,7 @@
 	"name": "tr_http_",
 	"properties": {
 		"annotations": [],
-		"runtimeState": "Started",
+		"runtimeState": "Stopped",
 		"pipeline": {
 			"pipelineReference": {
 				"referenceName": "PL_http_data_2_raw_folder",

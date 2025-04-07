@@ -54,7 +54,7 @@
 				],
 				"outputs": [
 					{
-						"referenceName": "Ds_covid_data",
+						"referenceName": "Ds_covid_ecdc_data_gen2",
 						"type": "DatasetReference"
 					}
 				]

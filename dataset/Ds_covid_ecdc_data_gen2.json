@@ -1,9 +1,14 @@
 {
-	"name": "Ds_covid_data",
+	"name": "Ds_covid_ecdc_data_gen2",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "LS_covid_dlgen2",
 			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"filename": {
+				"type": "String"
+			}
 		},
 		"folder": {
 			"name": "http_data"

@@ -110,6 +110,9 @@
 					"referenceName": "ls_covid_blobe",
 					"type": "LinkedServiceReference"
 				},
+				"folder": {
+					"name": "population"
+				},
 				"annotations": [],
 				"type": "DelimitedText",
 				"typeProperties": {
@@ -140,12 +143,16 @@
 					"referenceName": "LS_covid_dlgen2",
 					"type": "LinkedServiceReference"
 				},
+				"folder": {
+					"name": "population"
+				},
 				"annotations": [],
 				"type": "DelimitedText",
 				"typeProperties": {
 					"location": {
 						"type": "AzureBlobFSLocation",
 						"fileName": "population_by_age.tsv",
+						"folderPath": "population",
 						"fileSystem": "raw"
 					},
 					"columnDelimiter": "\t",

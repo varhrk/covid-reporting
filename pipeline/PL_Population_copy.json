@@ -46,7 +46,13 @@
 								"secureOutput": false,
 								"secureInput": false
 							},
-							"userProperties": []
+							"userProperties": [],
+							"typeProperties": {
+								"method": "POST",
+								"authentication": {
+									"type": "Basic"
+								}
+							}
 						}
 					],
 					"ifTrueActivities": [

@@ -49,9 +49,8 @@
 							"userProperties": [],
 							"typeProperties": {
 								"method": "POST",
-								"authentication": {
-									"type": "Basic"
-								}
+								"url": "https://fdfd",
+								"body": "dummy"
 							}
 						}
 					],

@@ -5,6 +5,9 @@
 			"referenceName": "LS_covid_dlgen2",
 			"type": "LinkedServiceReference"
 		},
+		"folder": {
+			"name": "population"
+		},
 		"annotations": [],
 		"type": "DelimitedText",
 		"typeProperties": {

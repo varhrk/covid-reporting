@@ -5,6 +5,9 @@
 			"referenceName": "ls_covid_blobe",
 			"type": "LinkedServiceReference"
 		},
+		"folder": {
+			"name": "population"
+		},
 		"annotations": [],
 		"type": "DelimitedText",
 		"typeProperties": {

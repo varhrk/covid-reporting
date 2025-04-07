@@ -61,7 +61,13 @@
 				"outputs": [
 					{
 						"referenceName": "Ds_covid_ecdc_data_gen2",
-						"type": "DatasetReference"
+						"type": "DatasetReference",
+						"parameters": {
+							"filename": {
+								"value": "@variables('sinkfilename')",
+								"type": "Expression"
+							}
+						}
 					}
 				]
 			}

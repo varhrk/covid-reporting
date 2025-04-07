@@ -1,5 +1,5 @@
 {
-	"name": "DS_SOURCE_population",
+	"name": "DS_SOURCE_population_gz",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "ls_covid_blobe",

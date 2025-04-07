@@ -17,6 +17,9 @@
 		"tr_population_properties_typeProperties_scope": {
 			"value": "/subscriptions/5e1ce86c-6aba-47f6-b127-f3df6d7dce0d/resourceGroups/covid-reporting-RG/providers/Microsoft.Storage/storageAccounts/covidreportingblobe"
 		},
+		"LS_HttpServer_GIT_properties_typeProperties_url": {
+			"value": "https://raw.githubusercontent.com"
+		},
 		"containerUri": {
 			"value": ""
 		},

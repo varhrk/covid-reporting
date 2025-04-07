@@ -15,6 +15,10 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'ls_covid_blobe'"
 		},
+		"LS_HttpServer_GIT_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://raw.githubusercontent.com"
+		},
 		"LS_covid_dlgen2_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://dlgen2covidreporting.dfs.core.windows.net/"
@@ -22,10 +26,6 @@
 		"tr_population_properties_typeProperties_scope": {
 			"type": "string",
 			"defaultValue": "/subscriptions/5e1ce86c-6aba-47f6-b127-f3df6d7dce0d/resourceGroups/covid-reporting-RG/providers/Microsoft.Storage/storageAccounts/covidreportingblobe"
-		},
-		"LS_HttpServer_GIT_properties_typeProperties_url": {
-			"type": "string",
-			"defaultValue": "https://raw.githubusercontent.com"
 		}
 	},
 	"variables": {
@@ -249,146 +249,11 @@
 				"policy": {
 					"elapsedTimeMetric": {}
 				},
-				"variables": {
-					"sourcleurl": {
-						"type": "String",
-						"defaultValue": "/varhrk/covid-reporting/refs/heads/main/cases_deaths.csv"
-					},
-					"sinkfilename": {
-						"type": "String",
-						"defaultValue": "cases_deaths.csv"
-					}
-				},
 				"annotations": []
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/datasets/DS_population_source_gz')]",
 				"[concat(variables('factoryId'), '/datasets/DS_sink_population_raw_tsv')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/DS_population_source_gz')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "ls_covid_blobe",
-					"type": "LinkedServiceReference"
-				},
-				"folder": {
-					"name": "population"
-				},
-				"annotations": [],
-				"type": "DelimitedText",
-				"typeProperties": {
-					"location": {
-						"type": "AzureBlobStorageLocation",
-						"fileName": "population_by_age.tsv.gz",
-						"container": "population"
-					},
-					"columnDelimiter": "\t",
-					"compressionCodec": "gzip",
-					"compressionLevel": "Optimal",
-					"escapeChar": "\\",
-					"firstRowAsHeader": true,
-					"quoteChar": "\""
-				},
-				"schema": []
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/ls_covid_blobe')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/DS_sink_population_raw_tsv')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "LS_covid_dlgen2",
-					"type": "LinkedServiceReference"
-				},
-				"folder": {
-					"name": "population"
-				},
-				"annotations": [],
-				"type": "DelimitedText",
-				"typeProperties": {
-					"location": {
-						"type": "AzureBlobFSLocation",
-						"fileName": "population_by_age.tsv",
-						"folderPath": "population",
-						"fileSystem": "raw"
-					},
-					"columnDelimiter": "\t",
-					"escapeChar": "\\",
-					"firstRowAsHeader": true,
-					"quoteChar": "\""
-				},
-				"schema": []
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/LS_covid_dlgen2')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/LS_covid_dlgen2')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"type": "AzureBlobFS",
-				"typeProperties": {
-					"url": "[parameters('LS_covid_dlgen2_properties_typeProperties_url')]",
-					"accountKey": {
-						"type": "SecureString",
-						"value": "[parameters('LS_covid_dlgen2_accountKey')]"
-					}
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/ls_covid_blobe')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"type": "AzureBlobStorage",
-				"typeProperties": {
-					"connectionString": "[parameters('ls_covid_blobe_connectionString')]"
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/tr_population')]",
-			"type": "Microsoft.DataFactory/factories/triggers",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"runtimeState": "Started",
-				"pipelines": [
-					{
-						"pipelineReference": {
-							"referenceName": "PL_Population_copy",
-							"type": "PipelineReference"
-						},
-						"parameters": {}
-					}
-				],
-				"type": "BlobEventsTrigger",
-				"typeProperties": {
-					"blobPathBeginsWith": "/population/blobs/populatoon_by_age.tsv.gz",
-					"ignoreEmptyBlobs": true,
-					"scope": "[parameters('tr_population_properties_typeProperties_scope')]",
-					"events": [
-						"Microsoft.Storage.BlobCreated"
-					]
-				}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/pipelines/PL_Population_copy')]"
 			]
 		},
 		{
@@ -493,7 +358,7 @@
 									},
 									"inputs": [
 										{
-											"referenceName": "Ds_http_git",
+											"referenceName": "Ds_http_git_ecdc",
 											"type": "DatasetReference",
 											"parameters": {
 												"relativeurl": {
@@ -527,28 +392,137 @@
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/datasets/DS_lookup_json')]",
-				"[concat(variables('factoryId'), '/datasets/Ds_http_git')]",
+				"[concat(variables('factoryId'), '/datasets/Ds_http_git_ecdc')]",
 				"[concat(variables('factoryId'), '/datasets/Ds_covid_ecdc_data_gen2')]"
 			]
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/LS_HttpServer_GIT')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"name": "[concat(parameters('factoryName'), '/DS_lookup_json')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
 			"properties": {
-				"description": "git http ",
+				"linkedServiceName": {
+					"referenceName": "ls_covid_blobe",
+					"type": "LinkedServiceReference"
+				},
 				"annotations": [],
-				"type": "HttpServer",
+				"type": "Json",
 				"typeProperties": {
-					"url": "[parameters('LS_HttpServer_GIT_properties_typeProperties_url')]",
-					"enableServerCertificateValidation": true,
-					"authenticationType": "Anonymous"
-				}
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": "lookup.json",
+						"container": "lookup"
+					}
+				},
+				"schema": {}
 			},
-			"dependsOn": []
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/ls_covid_blobe')]"
+			]
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/Ds_http_git')]",
+			"name": "[concat(parameters('factoryName'), '/DS_population_source_gz')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "ls_covid_blobe",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "population"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": "population_by_age.tsv.gz",
+						"container": "population"
+					},
+					"columnDelimiter": "\t",
+					"compressionCodec": "gzip",
+					"compressionLevel": "Optimal",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/ls_covid_blobe')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/DS_sink_population_raw_tsv')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "LS_covid_dlgen2",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "population"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobFSLocation",
+						"fileName": "population_by_age.tsv",
+						"folderPath": "population",
+						"fileSystem": "raw"
+					},
+					"columnDelimiter": "\t",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/LS_covid_dlgen2')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Ds_covid_ecdc_data_gen2')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "LS_covid_dlgen2",
+					"type": "LinkedServiceReference"
+				},
+				"parameters": {
+					"filename": {
+						"type": "String"
+					}
+				},
+				"folder": {
+					"name": "http_data"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobFSLocation",
+						"folderPath": "ecdc",
+						"fileSystem": "raw"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/LS_covid_dlgen2')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Ds_http_git_ecdc')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
 			"properties": {
@@ -586,67 +560,117 @@
 			]
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/Ds_covid_ecdc_data_gen2')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
+			"name": "[concat(parameters('factoryName'), '/LS_HttpServer_GIT')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
 			"apiVersion": "2018-06-01",
 			"properties": {
-				"linkedServiceName": {
-					"referenceName": "LS_covid_dlgen2",
-					"type": "LinkedServiceReference"
-				},
-				"parameters": {
-					"filename": {
-						"type": "String"
-					}
-				},
-				"folder": {
-					"name": "http_data"
-				},
+				"description": "git http ",
 				"annotations": [],
-				"type": "DelimitedText",
+				"type": "HttpServer",
 				"typeProperties": {
-					"location": {
-						"type": "AzureBlobFSLocation",
-						"fileName": {
-							"value": "@dataset().filename",
-							"type": "Expression"
+					"url": "[parameters('LS_HttpServer_GIT_properties_typeProperties_url')]",
+					"enableServerCertificateValidation": true,
+					"authenticationType": "Anonymous"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/LS_covid_dlgen2')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureBlobFS",
+				"typeProperties": {
+					"url": "[parameters('LS_covid_dlgen2_properties_typeProperties_url')]",
+					"accountKey": {
+						"type": "SecureString",
+						"value": "[parameters('LS_covid_dlgen2_accountKey')]"
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/ls_covid_blobe')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureBlobStorage",
+				"typeProperties": {
+					"connectionString": "[parameters('ls_covid_blobe_connectionString')]"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/tr_http_ecdc_schedule')]",
+			"type": "Microsoft.DataFactory/factories/triggers",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"runtimeState": "Started",
+				"pipelines": [
+					{
+						"pipelineReference": {
+							"referenceName": "PL_http_data_2_raw_folder",
+							"type": "PipelineReference"
 						},
-						"folderPath": "ecdc",
-						"fileSystem": "raw"
-					},
-					"columnDelimiter": ",",
-					"escapeChar": "\\",
-					"firstRowAsHeader": true,
-					"quoteChar": "\""
-				},
-				"schema": []
+						"parameters": {}
+					}
+				],
+				"type": "ScheduleTrigger",
+				"typeProperties": {
+					"recurrence": {
+						"frequency": "Day",
+						"interval": 1,
+						"startTime": "2025-04-08T00:50:00",
+						"timeZone": "India Standard Time",
+						"schedule": {
+							"minutes": [
+								0
+							],
+							"hours": [
+								0
+							]
+						}
+					}
+				}
 			},
 			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/LS_covid_dlgen2')]"
+				"[concat(variables('factoryId'), '/pipelines/PL_http_data_2_raw_folder')]"
 			]
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/DS_lookup_json')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
+			"name": "[concat(parameters('factoryName'), '/tr_population')]",
+			"type": "Microsoft.DataFactory/factories/triggers",
 			"apiVersion": "2018-06-01",
 			"properties": {
-				"linkedServiceName": {
-					"referenceName": "ls_covid_blobe",
-					"type": "LinkedServiceReference"
-				},
 				"annotations": [],
-				"type": "Json",
-				"typeProperties": {
-					"location": {
-						"type": "AzureBlobStorageLocation",
-						"fileName": "lookup.json",
-						"container": "lookup"
+				"runtimeState": "Started",
+				"pipelines": [
+					{
+						"pipelineReference": {
+							"referenceName": "PL_Population_copy",
+							"type": "PipelineReference"
+						},
+						"parameters": {}
 					}
-				},
-				"schema": {}
+				],
+				"type": "BlobEventsTrigger",
+				"typeProperties": {
+					"blobPathBeginsWith": "/population/blobs/population_by_age.tsv.gz",
+					"ignoreEmptyBlobs": true,
+					"scope": "[parameters('tr_population_properties_typeProperties_scope')]",
+					"events": [
+						"Microsoft.Storage.BlobCreated"
+					]
+				}
 			},
 			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/ls_covid_blobe')]"
+				"[concat(variables('factoryId'), '/pipelines/PL_Population_copy')]"
 			]
 		}
 	]

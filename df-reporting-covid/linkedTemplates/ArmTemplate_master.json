@@ -15,6 +15,10 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'ls_covid_blobe'"
 		},
+		"LS_HttpServer_GIT_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://raw.githubusercontent.com"
+		},
 		"LS_covid_dlgen2_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://dlgen2covidreporting.dfs.core.windows.net/"
@@ -22,10 +26,6 @@
 		"tr_population_properties_typeProperties_scope": {
 			"type": "string",
 			"defaultValue": "/subscriptions/5e1ce86c-6aba-47f6-b127-f3df6d7dce0d/resourceGroups/covid-reporting-RG/providers/Microsoft.Storage/storageAccounts/covidreportingblobe"
-		},
-		"LS_HttpServer_GIT_properties_typeProperties_url": {
-			"type": "string",
-			"defaultValue": "https://raw.githubusercontent.com"
 		},
 		"containerUri": {
 			"type": "string",
@@ -60,11 +60,11 @@
 					"ls_covid_blobe_connectionString": {
 						"value": "[parameters('ls_covid_blobe_connectionString')]"
 					},
-					"LS_covid_dlgen2_properties_typeProperties_url": {
-						"value": "[parameters('LS_covid_dlgen2_properties_typeProperties_url')]"
-					},
 					"LS_HttpServer_GIT_properties_typeProperties_url": {
 						"value": "[parameters('LS_HttpServer_GIT_properties_typeProperties_url')]"
+					},
+					"LS_covid_dlgen2_properties_typeProperties_url": {
+						"value": "[parameters('LS_covid_dlgen2_properties_typeProperties_url')]"
 					},
 					"tr_population_properties_typeProperties_scope": {
 						"value": "[parameters('tr_population_properties_typeProperties_scope')]"

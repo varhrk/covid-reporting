@@ -18,10 +18,7 @@
 		"typeProperties": {
 			"location": {
 				"type": "HttpServerLocation",
-				"relativeUrl": {
-					"value": "@dataset().Para_relative_url",
-					"type": "Expression"
-				}
+				"relativeUrl": "/varhrk/covid-reporting/refs/heads/main/"
 			},
 			"columnDelimiter": ",",
 			"escapeChar": "\\",

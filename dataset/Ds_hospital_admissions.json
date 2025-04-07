@@ -6,7 +6,7 @@
 			"type": "LinkedServiceReference"
 		},
 		"folder": {
-			"name": "transform/hdinsight"
+			"name": "transform/dataflow_case_deaths_hospital"
 		},
 		"annotations": [],
 		"type": "DelimitedText",

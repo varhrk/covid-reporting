@@ -13,7 +13,8 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"folderPath": "covid",
+				"fileName": "cases_",
+				"folderPath": "ecdc",
 				"fileSystem": "raw"
 			},
 			"columnDelimiter": ",",

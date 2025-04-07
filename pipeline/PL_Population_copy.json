@@ -5,7 +5,14 @@
 			{
 				"name": "Copy population",
 				"type": "Copy",
-				"dependsOn": [],
+				"dependsOn": [
+					{
+						"activity": "check file exists",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
 				"policy": {
 					"timeout": "0.12:00:00",
 					"retry": 0,
@@ -71,7 +78,8 @@
 						"type": "DatasetReference"
 					},
 					"timeout": "1.00:00:00",
-					"sleep": 0
+					"sleep": 600,
+					"minimumSize": 1024
 				}
 			}
 		],

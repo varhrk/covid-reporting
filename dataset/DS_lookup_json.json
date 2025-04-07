@@ -1,0 +1,19 @@
+{
+	"name": "DS_lookup_json",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_covid_blobe",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "lookup.json",
+				"container": "lookup"
+			}
+		},
+		"schema": {}
+	}
+}

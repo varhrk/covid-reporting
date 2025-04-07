@@ -18,6 +18,10 @@
 		"LS_covid_dlgen2_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://dlgen2covidreporting.dfs.core.windows.net/"
+		},
+		"tr_population_properties_typeProperties_scope": {
+			"type": "string",
+			"defaultValue": "/subscriptions/5e1ce86c-6aba-47f6-b127-f3df6d7dce0d/resourceGroups/covid-reporting-RG/providers/Microsoft.Storage/storageAccounts/covidreportingblobe"
 		}
 	},
 	"variables": {
@@ -245,8 +249,7 @@
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/datasets/DS_population_source_gz')]",
-				"[concat(variables('factoryId'), '/datasets/DS_sink_population_raw_tsv')]",
-				"[concat(variables('factoryId'), '/linkedServices/ls_covid_blobe')]"
+				"[concat(variables('factoryId'), '/datasets/DS_sink_population_raw_tsv')]"
 			]
 		},
 		{
@@ -350,7 +353,7 @@
 			"apiVersion": "2018-06-01",
 			"properties": {
 				"annotations": [],
-				"runtimeState": "Started",
+				"runtimeState": "Stopped",
 				"pipelines": [
 					{
 						"pipelineReference": {
@@ -369,6 +372,36 @@
 						"endTime": "2025-04-07T14:00:00",
 						"timeZone": "India Standard Time"
 					}
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/pipelines/PL_Population_copy')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/tr_population')]",
+			"type": "Microsoft.DataFactory/factories/triggers",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"runtimeState": "Stopped",
+				"pipelines": [
+					{
+						"pipelineReference": {
+							"referenceName": "PL_Population_copy",
+							"type": "PipelineReference"
+						},
+						"parameters": {}
+					}
+				],
+				"type": "BlobEventsTrigger",
+				"typeProperties": {
+					"blobPathBeginsWith": "/population/blobs/populatoon_by_age.tsv.gz",
+					"ignoreEmptyBlobs": true,
+					"scope": "[parameters('tr_population_properties_typeProperties_scope')]",
+					"events": [
+						"Microsoft.Storage.BlobCreated"
+					]
 				}
 			},
 			"dependsOn": [

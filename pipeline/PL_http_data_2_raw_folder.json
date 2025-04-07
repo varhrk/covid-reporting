@@ -59,7 +59,7 @@
 						"type": "DatasetReference",
 						"parameters": {
 							"relativeurl": {
-								"value": "@variables('sourcleurl')",
+								"value": "@activity('Lookup json file').output.value.relativeurl",
 								"type": "Expression"
 							}
 						}

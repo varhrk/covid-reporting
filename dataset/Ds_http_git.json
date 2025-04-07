@@ -5,6 +5,11 @@
 			"referenceName": "LS_HttpServer_GIT",
 			"type": "LinkedServiceReference"
 		},
+		"parameters": {
+			"Para_relative_url": {
+				"type": "String"
+			}
+		},
 		"folder": {
 			"name": "http_data"
 		},
@@ -12,7 +17,11 @@
 		"type": "DelimitedText",
 		"typeProperties": {
 			"location": {
-				"type": "HttpServerLocation"
+				"type": "HttpServerLocation",
+				"relativeUrl": {
+					"value": "@dataset().Para_relative_url",
+					"type": "Expression"
+				}
 			},
 			"columnDelimiter": ",",
 			"escapeChar": "\\",

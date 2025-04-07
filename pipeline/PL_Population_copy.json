@@ -42,7 +42,8 @@
 								{
 									"activity": "Fail of population source",
 									"dependencyConditions": [
-										"Succeeded"
+										"Succeeded",
+										"Failed"
 									]
 								}
 							],

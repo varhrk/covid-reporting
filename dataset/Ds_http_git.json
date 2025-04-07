@@ -5,6 +5,9 @@
 			"referenceName": "LS_HttpServer_GIT",
 			"type": "LinkedServiceReference"
 		},
+		"folder": {
+			"name": "http_data"
+		},
 		"annotations": [],
 		"type": "DelimitedText",
 		"typeProperties": {

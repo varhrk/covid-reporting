@@ -5,6 +5,9 @@
 			"referenceName": "LS_covid_dlgen2",
 			"type": "LinkedServiceReference"
 		},
+		"folder": {
+			"name": "http_data"
+		},
 		"annotations": [],
 		"type": "DelimitedText",
 		"typeProperties": {

@@ -15,20 +15,8 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
-					"sink": {
-						"type": "BinarySink",
-						"storeSettings": {
-							"type": "AzureBlobFSWriteSettings"
-						}
-					},
 					"enableStaging": false
-				},
-				"outputs": [
-					{
-						"referenceName": "DS_sink_population_raw_tsv",
-						"type": "DatasetReference"
-					}
-				]
+				}
 			}
 		],
 		"annotations": []

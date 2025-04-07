@@ -71,7 +71,7 @@
 						"type": "DatasetReference",
 						"parameters": {
 							"filename": {
-								"value": "@variables('sinkfilename')",
+								"value": "@activity('Lookup json file').output.value.filename",
 								"type": "Expression"
 							}
 						}

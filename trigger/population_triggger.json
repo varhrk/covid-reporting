@@ -1,0 +1,25 @@
+{
+	"name": "population_triggger",
+	"properties": {
+		"annotations": [],
+		"runtimeState": "Started",
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "PL_Population_copy",
+					"type": "PipelineReference"
+				}
+			}
+		],
+		"type": "ScheduleTrigger",
+		"typeProperties": {
+			"recurrence": {
+				"frequency": "Minute",
+				"interval": 15,
+				"startTime": "2025-04-07T01:27:00",
+				"endTime": "2025-04-07T02:00:00",
+				"timeZone": "India Standard Time"
+			}
+		}
+	}
+}

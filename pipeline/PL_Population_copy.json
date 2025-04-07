@@ -38,7 +38,14 @@
 						{
 							"name": "send failure mail",
 							"type": "WebActivity",
-							"dependsOn": [],
+							"dependsOn": [
+								{
+									"activity": "Fail of population source",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
 							"policy": {
 								"timeout": "0.12:00:00",
 								"retry": 0,
@@ -54,10 +61,14 @@
 							}
 						},
 						{
-							"name": "Fail of ",
+							"name": "Fail of population source",
 							"type": "Fail",
 							"dependsOn": [],
-							"userProperties": []
+							"userProperties": [],
+							"typeProperties": {
+								"message": "file is not correct",
+								"errorCode": "404"
+							}
 						}
 					],
 					"ifTrueActivities": [

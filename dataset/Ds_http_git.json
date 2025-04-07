@@ -1,0 +1,21 @@
+{
+	"name": "Ds_http_git",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_HttpServer_GIT",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "HttpServerLocation"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": []
+	}
+}

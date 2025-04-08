@@ -1,0 +1,19 @@
+{
+	"name": "dataflow hospital admisiion",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"name": "hospitaladmisiionRaw"
+				}
+			],
+			"sinks": [],
+			"transformations": [],
+			"scriptLines": [
+				"source(allowSchemaDrift: true,",
+				"     validateSchema: false) ~> hospitaladmisiionRaw"
+			]
+		}
+	}
+}

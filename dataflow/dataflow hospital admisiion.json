@@ -238,14 +238,7 @@
 				"     ),",
 				"     umask: 0022,",
 				"     preCommands: [],",
-				"     postCommands: [],",
-				"     mapColumn(",
-				"          country,",
-				"          country_code_2_digit,",
-				"          country_code_3_digit,",
-				"          population,",
-				"          source",
-				"     )) ~> sink2"
+				"     postCommands: []) ~> sink2"
 			]
 		}
 	}

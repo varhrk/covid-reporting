@@ -95,6 +95,7 @@
 				"     broadcast: 'auto')~> lookup1",
 				"lookup1 sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
+				"     rowUrlColumn:'',",
 				"     umask: 0022,",
 				"     preCommands: [],",
 				"     postCommands: [],",

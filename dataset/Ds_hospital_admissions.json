@@ -6,7 +6,7 @@
 			"type": "LinkedServiceReference"
 		},
 		"folder": {
-			"name": "transform/dataflow_case_deaths_hospital"
+			"name": "transform/hospital_admissions"
 		},
 		"annotations": [],
 		"type": "DelimitedText",

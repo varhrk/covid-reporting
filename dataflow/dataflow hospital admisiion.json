@@ -243,10 +243,8 @@
 				"          country,",
 				"          country_code_2_digit,",
 				"          country_code_3_digit,",
+				"          new_hospital_occupancy_count,",
 				"          population,",
-				"          {count_confirmed cases} = reported_week_start_date,",
-				"          count_deaths = reported_week_end_date,",
-				"          reported_date = new_icu_occupancycount,",
 				"          source",
 				"     )) ~> sink2"
 			]

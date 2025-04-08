@@ -95,7 +95,7 @@
 				"     broadcast: 'auto')~> lookup1",
 				"lookup1 sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
-				"     rowUrlColumn:(concat('cases', 'death')),",
+				"     partitionFileNames:['cases_death_processed'],",
 				"     umask: 0022,",
 				"     preCommands: [],",
 				"     postCommands: [],",

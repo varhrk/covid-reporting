@@ -507,6 +507,9 @@
 					"referenceName": "LS_covid_dlgen2",
 					"type": "LinkedServiceReference"
 				},
+				"folder": {
+					"name": "transform/dataflow_case_deaths_hospital"
+				},
 				"annotations": [],
 				"type": "DelimitedText",
 				"typeProperties": {
@@ -534,6 +537,9 @@
 				"linkedServiceName": {
 					"referenceName": "LS_covid_dlgen2",
 					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "transform/hospital_admissions"
 				},
 				"annotations": [],
 				"type": "DelimitedText",
@@ -1019,6 +1025,9 @@
 				"linkedServiceName": {
 					"referenceName": "LS_covid_dlgen2",
 					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "transform/hospital_admissions"
 				},
 				"annotations": [],
 				"type": "DelimitedText",

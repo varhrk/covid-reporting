@@ -5,6 +5,9 @@
 		"factoryName": {
 			"value": "df-reporting-covid"
 		},
+		"LS_SQL_DB_password": {
+			"value": ""
+		},
 		"LS_covid_dlgen2_accountKey": {
 			"value": ""
 		},
@@ -16,6 +19,15 @@
 		},
 		"LS_HttpServer_GIT_properties_typeProperties_url": {
 			"value": "https://raw.githubusercontent.com"
+		},
+		"LS_SQL_DB_properties_typeProperties_server": {
+			"value": "covidreportingsrver.database.windows.net"
+		},
+		"LS_SQL_DB_properties_typeProperties_database": {
+			"value": "covid-DB"
+		},
+		"LS_SQL_DB_properties_typeProperties_userName": {
+			"value": "admin1"
 		},
 		"LS_covid_dlgen2_properties_typeProperties_url": {
 			"value": "https://dlgen2covidreporting.dfs.core.windows.net/"

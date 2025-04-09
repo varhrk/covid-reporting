@@ -7,6 +7,10 @@
 			"metadata": "Data Factory name",
 			"defaultValue": "df-reporting-covid"
 		},
+		"LS_SQL_DB_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'LS_SQL_DB'"
+		},
 		"LS_covid_dlgen2_accountKey": {
 			"type": "secureString",
 			"metadata": "Secure string for 'accountKey' of 'LS_covid_dlgen2'"
@@ -22,6 +26,18 @@
 		"LS_HttpServer_GIT_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://raw.githubusercontent.com"
+		},
+		"LS_SQL_DB_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "covidreportingsrver.database.windows.net"
+		},
+		"LS_SQL_DB_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "covid-DB"
+		},
+		"LS_SQL_DB_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "admin1"
 		},
 		"LS_covid_dlgen2_properties_typeProperties_url": {
 			"type": "string",
@@ -62,6 +78,9 @@
 					"factoryName": {
 						"value": "[parameters('factoryName')]"
 					},
+					"LS_SQL_DB_password": {
+						"value": "[parameters('LS_SQL_DB_password')]"
+					},
 					"LS_covid_dlgen2_accountKey": {
 						"value": "[parameters('LS_covid_dlgen2_accountKey')]"
 					},
@@ -73,6 +92,15 @@
 					},
 					"LS_HttpServer_GIT_properties_typeProperties_url": {
 						"value": "[parameters('LS_HttpServer_GIT_properties_typeProperties_url')]"
+					},
+					"LS_SQL_DB_properties_typeProperties_server": {
+						"value": "[parameters('LS_SQL_DB_properties_typeProperties_server')]"
+					},
+					"LS_SQL_DB_properties_typeProperties_database": {
+						"value": "[parameters('LS_SQL_DB_properties_typeProperties_database')]"
+					},
+					"LS_SQL_DB_properties_typeProperties_userName": {
+						"value": "[parameters('LS_SQL_DB_properties_typeProperties_userName')]"
 					},
 					"LS_covid_dlgen2_properties_typeProperties_url": {
 						"value": "[parameters('LS_covid_dlgen2_properties_typeProperties_url')]"

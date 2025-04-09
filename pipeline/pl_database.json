@@ -19,7 +19,7 @@
 						"type": "DelimitedTextSource",
 						"storeSettings": {
 							"type": "AzureBlobFSReadSettings",
-							"fileListPath": "processed/daily_popuation",
+							"fileListPath": "processed/listoffiles.txt",
 							"enablePartitionDiscovery": false
 						},
 						"formatSettings": {

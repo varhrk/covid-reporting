@@ -258,9 +258,11 @@
 						"          reported_date as string,",
 						"          source as string",
 						"     ),",
+						"     partitionFileNames:['weekly_hospital'],",
 						"     umask: 0022,",
 						"     preCommands: [],",
-						"     postCommands: []) ~> sink2"
+						"     postCommands: [],",
+						"     partitionBy('hash', 1)) ~> sink2"
 					]
 				}
 			},

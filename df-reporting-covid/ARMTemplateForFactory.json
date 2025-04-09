@@ -15,6 +15,10 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'ls_covid_blobe'"
 		},
+		"ls_databricks_accessToken": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accessToken' of 'ls_databricks'"
+		},
 		"LS_HttpServer_GIT_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://raw.githubusercontent.com"
@@ -22,6 +26,10 @@
 		"LS_covid_dlgen2_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://dlgen2covidreporting.dfs.core.windows.net/"
+		},
+		"ls_databricks_properties_typeProperties_existingClusterId": {
+			"type": "string",
+			"defaultValue": "0409-073811-ergujftx"
 		},
 		"tr_population_properties_typeProperties_scope": {
 			"type": "string",
@@ -496,6 +504,42 @@
 				"[concat(variables('factoryId'), '/datasets/DS_lookup_json')]",
 				"[concat(variables('factoryId'), '/datasets/Ds_http_git_ecdc')]",
 				"[concat(variables('factoryId'), '/datasets/Ds_covid_ecdc_data_gen2')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/pl_databricks')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "Notebook1",
+						"type": "DatabricksNotebook",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"notebookPath": "/covid/transform_population_data"
+						},
+						"linkedServiceName": {
+							"referenceName": "ls_databricks",
+							"type": "LinkedServiceReference"
+						}
+					}
+				],
+				"policy": {
+					"elapsedTimeMetric": {}
+				},
+				"annotations": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/ls_databricks')]"
 			]
 		},
 		{
@@ -1127,6 +1171,24 @@
 			"dependsOn": []
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/ls_databricks')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureDatabricks",
+				"typeProperties": {
+					"domain": "https://adb-2692745758372019.19.azuredatabricks.net",
+					"accessToken": {
+						"type": "SecureString",
+						"value": "[parameters('ls_databricks_accessToken')]"
+					},
+					"existingClusterId": "[parameters('ls_databricks_properties_typeProperties_existingClusterId')]"
+				}
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/tr_http_ecdc_schedule')]",
 			"type": "Microsoft.DataFactory/factories/triggers",
 			"apiVersion": "2018-06-01",
@@ -1545,11 +1607,13 @@
 						"          reported_date as string,",
 						"          source as string",
 						"     ),",
+						"     partitionFileNames:['daily_popuation'],",
 						"     umask: 0022,",
 						"     preCommands: [],",
 						"     postCommands: [],",
 						"     skipDuplicateMapInputs: true,",
-						"     skipDuplicateMapOutputs: true) ~> sink1",
+						"     skipDuplicateMapOutputs: true,",
+						"     partitionBy('hash', 1)) ~> sink1",
 						"select5 sink(allowSchemaDrift: true,",
 						"     validateSchema: false,",
 						"     input(",

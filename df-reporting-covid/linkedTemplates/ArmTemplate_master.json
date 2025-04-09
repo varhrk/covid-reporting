@@ -15,6 +15,10 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'ls_covid_blobe'"
 		},
+		"ls_databricks_accessToken": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accessToken' of 'ls_databricks'"
+		},
 		"LS_HttpServer_GIT_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://raw.githubusercontent.com"
@@ -22,6 +26,10 @@
 		"LS_covid_dlgen2_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://dlgen2covidreporting.dfs.core.windows.net/"
+		},
+		"ls_databricks_properties_typeProperties_existingClusterId": {
+			"type": "string",
+			"defaultValue": "0409-073811-ergujftx"
 		},
 		"tr_population_properties_typeProperties_scope": {
 			"type": "string",
@@ -60,11 +68,17 @@
 					"ls_covid_blobe_connectionString": {
 						"value": "[parameters('ls_covid_blobe_connectionString')]"
 					},
+					"ls_databricks_accessToken": {
+						"value": "[parameters('ls_databricks_accessToken')]"
+					},
 					"LS_HttpServer_GIT_properties_typeProperties_url": {
 						"value": "[parameters('LS_HttpServer_GIT_properties_typeProperties_url')]"
 					},
 					"LS_covid_dlgen2_properties_typeProperties_url": {
 						"value": "[parameters('LS_covid_dlgen2_properties_typeProperties_url')]"
+					},
+					"ls_databricks_properties_typeProperties_existingClusterId": {
+						"value": "[parameters('ls_databricks_properties_typeProperties_existingClusterId')]"
 					}
 				}
 			},

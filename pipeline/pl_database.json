@@ -19,6 +19,7 @@
 						"type": "DelimitedTextSource",
 						"storeSettings": {
 							"type": "AzureBlobFSReadSettings",
+							"fileListPath": "processed/cases_death_processed",
 							"enablePartitionDiscovery": false
 						},
 						"formatSettings": {

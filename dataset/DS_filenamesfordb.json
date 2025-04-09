@@ -1,0 +1,26 @@
+{
+	"name": "DS_filenamesfordb",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_covid_dlgen2",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "filenamedb.json",
+				"fileSystem": "raw"
+			}
+		},
+		"schema": {
+			"type": "object",
+			"properties": {
+				"Tablename": {
+					"type": "string"
+				}
+			}
+		}
+	}
+}

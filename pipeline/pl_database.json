@@ -45,7 +45,7 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "DS_cases_death_processed",
+						"referenceName": "Ds_weekly_processed_hospital",
 						"type": "DatasetReference"
 					}
 				],

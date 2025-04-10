@@ -5,6 +5,11 @@
 			"referenceName": "LS_covid_dlgen2",
 			"type": "LinkedServiceReference"
 		},
+		"parameters": {
+			"Para_filename": {
+				"type": "String"
+			}
+		},
 		"annotations": [],
 		"type": "DelimitedText",
 		"typeProperties": {

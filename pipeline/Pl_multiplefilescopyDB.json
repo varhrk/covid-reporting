@@ -95,7 +95,13 @@
 							"inputs": [
 								{
 									"referenceName": "Ds_allfilenames",
-									"type": "DatasetReference"
+									"type": "DatasetReference",
+									"parameters": {
+										"Para_filename": {
+											"value": "@item().value.Tablename",
+											"type": "Expression"
+										}
+									}
 								}
 							],
 							"outputs": [

@@ -107,7 +107,13 @@
 							"outputs": [
 								{
 									"referenceName": "DS_SQLDB",
-									"type": "DatasetReference"
+									"type": "DatasetReference",
+									"parameters": {
+										"para_table_name": {
+											"value": "@item().value.Tablename",
+											"type": "Expression"
+										}
+									}
 								}
 							]
 						}

@@ -3,8 +3,8 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "Get Metadata1",
-				"type": "GetMetadata",
+				"name": "Lookup1",
+				"type": "Lookup",
 				"dependsOn": [],
 				"policy": {
 					"timeout": "0.12:00:00",
@@ -13,23 +13,7 @@
 					"secureOutput": false,
 					"secureInput": false
 				},
-				"userProperties": [],
-				"typeProperties": {
-					"dataset": {
-						"referenceName": "Ds_allfilenames",
-						"type": "DatasetReference"
-					},
-					"fieldList": [
-						"exists"
-					],
-					"storeSettings": {
-						"type": "AzureBlobFSReadSettings",
-						"enablePartitionDiscovery": false
-					},
-					"formatSettings": {
-						"type": "DelimitedTextReadSettings"
-					}
-				}
+				"userProperties": []
 			}
 		],
 		"annotations": []

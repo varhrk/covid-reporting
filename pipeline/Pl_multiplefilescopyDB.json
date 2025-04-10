@@ -49,7 +49,19 @@
 					"items": {
 						"value": "@activity('Lookupfilenamestocopy').output",
 						"type": "Expression"
-					}
+					},
+					"activities": [
+						{
+							"name": "Fail1",
+							"type": "Fail",
+							"dependsOn": [],
+							"userProperties": [],
+							"typeProperties": {
+								"message": "hgctfctfc",
+								"errorCode": "hgctyc"
+							}
+						}
+					]
 				}
 			}
 		],

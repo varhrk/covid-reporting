@@ -47,7 +47,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"items": {
-						"value": "@activity('Lookupfilenamestocopy').output.value",
+						"value": "@activity('Lookupfilenamestocopy').output.count",
 						"type": "Expression"
 					},
 					"activities": [
